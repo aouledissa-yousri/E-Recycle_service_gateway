@@ -1,5 +1,6 @@
 import express from "express"
 import cors from "cors"
+import colors from "colors"
 import { routes } from "./routes"
 
 //building application
@@ -10,6 +11,7 @@ const corsOptions = []
 
 app.use(express.json())
 app.use(cors(corsOptions))
+colors.enable()
 
 //detecting input server port
 let port = parseInt(process.argv[2])
@@ -21,5 +23,5 @@ app.use("/", routes)
 
 //run express server
 app.listen(port, () => {
-    console.log("Application is running on http://localhost:"+port)
+    console.log("Application is running on http://localhost:".green+port.toString().green)
 })

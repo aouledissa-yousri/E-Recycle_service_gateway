@@ -1,11 +1,11 @@
 import express from "express"
-import { mainControllerRoutes } from './controllers/MainController/MainControllerRoutes';
+import { gatewayControllerRoutes } from "./controllers/GatewayController/GatewayControllerRoutes"
 
 let routes = express.Router()
 
 //put your routes here
 
-routes.use("/", mainControllerRoutes)
+routes.use("/", gatewayControllerRoutes)
 
 
 export { routes }
