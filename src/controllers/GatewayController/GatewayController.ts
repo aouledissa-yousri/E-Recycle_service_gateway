@@ -1,6 +1,7 @@
 import axios from "axios";
 import { HOSTS } from "../../../hosts"
 import { KeyError } from "../../errors/KeyError";
+import { checkAccessToken } from "../../decorators";
 import { SignUpPayload } from '../../payloadformatters/SignUpPayload';
 import { LoginPayload } from '../../payloadformatters/LoginPayload';
 import { ConfirmAccountPayload } from '../../payloadformatters/ConfirmAccountPayload';
@@ -9,6 +10,8 @@ import { RequestPasswordResetPayload } from '../../payloadformatters/RequestPass
 import { PasswordResetCodePayload } from '../../payloadformatters/PasswordResetCodePayload';
 import { ResetPasswordPayload } from '../../payloadformatters/ResetPasswordPayload';
 import { ChangePasswordPayload } from '../../payloadformatters/ChangePasswordPayload';
+import { MakeRecycleRequestPayload } from '../../payloadformatters/MakeRecycleRequestPayload';
+import { WithdrawRecycleRequestPayload } from '../../payloadformatters/WithdrawRecycleRequestPayload';
 
 export abstract class GatewayController {
 
@@ -75,11 +78,12 @@ export abstract class GatewayController {
 
     }
 
+    @checkAccessToken()
     public static async logout(token: any){
 
         try{
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.delete(
                 HOSTS.userManagement+"/logout/",
                 {
                     headers: {
@@ -99,11 +103,12 @@ export abstract class GatewayController {
 
     } 
 
+    @checkAccessToken()
     public static async logoutAllSessions(token: any){
 
         try{
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.delete(
                 HOSTS.userManagement+"/logoutAllSessions/",
                 {
                     headers: {
@@ -123,11 +128,12 @@ export abstract class GatewayController {
 
     } 
     
+    @checkAccessToken()
     public static async logoutAllOtherSessions(token: any){
 
         try{
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.delete(
                 HOSTS.userManagement+"/logoutAllOtherSessions/",
                 {
                     headers: {
@@ -152,7 +158,7 @@ export abstract class GatewayController {
 
             const confirmAccountPayload = ConfirmAccountPayload.createConfirmAccountPayload(payload)
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.patch(
                 HOSTS.userManagement+"/confirmAccount/",
                 {
                     headers: {
@@ -175,11 +181,12 @@ export abstract class GatewayController {
         }
     } 
     
+    @checkAccessToken()
     public static async enableTwoFactorAuth(token: any){
 
         try{
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.patch(
                 HOSTS.userManagement+"/enableTwoFactorAuth/",
                 {
                     headers: {
@@ -198,12 +205,13 @@ export abstract class GatewayController {
         }
     } 
     
+    @checkAccessToken()
     public static async disableTwoFactorAuth(token: any){
 
         try{
             
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.patch(
                 HOSTS.userManagement+"/disableTwoFactorAuth/",
                 {
                     headers: {
@@ -221,15 +229,15 @@ export abstract class GatewayController {
 
         }
 
-    } 
-    
+    }
+
     public static async twoFactorAuth(payload: any){
         
         try{
 
             const twoFactorAuthPayload = TwoFactorAuthPayload.createTwoFactorAuthPayload(payload)
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.patch(
                 HOSTS.userManagement+"/twoFactorAuth/",
                 {
                     headers: {
@@ -249,6 +257,8 @@ export abstract class GatewayController {
         }
 
     } 
+
+    
     
     public static async requestPasswordReset(payload: any){
 
@@ -283,7 +293,7 @@ export abstract class GatewayController {
 
             const passwordResetCodePayload = PasswordResetCodePayload.createPasswordResetCodePayload(payload)
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.delete(
                 HOSTS.userManagement+"/checkPasswordResetCode/",
                 {
                     headers: {
@@ -310,7 +320,7 @@ export abstract class GatewayController {
 
             const resetPasswordPayload = ResetPasswordPayload.createResetPasswordPayload(payload)
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.patch(
                 HOSTS.userManagement+"/resetPassword/",
                 {
                     headers: {
@@ -331,13 +341,14 @@ export abstract class GatewayController {
 
     } 
     
+    @checkAccessToken()
     public static async changePassword(token: any, payload: any){
 
         try{
 
             const changePasswordPayload = ChangePasswordPayload.createChangePassworPayload(payload)
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.patch(
                 HOSTS.userManagement+"/changePassword/",
                 {
                     headers: {
@@ -366,7 +377,7 @@ export abstract class GatewayController {
 
         try{
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.get(
                 HOSTS.userManagement+"/googleLoginGateway/",
                 {
                     headers: {
@@ -390,12 +401,130 @@ export abstract class GatewayController {
 
         try{
 
-            const {data, status} = await axios.post(
+            const {data, status} = await axios.get(
                 HOSTS.userManagement+"/facebookLoginGateway/",
                 {
                     headers: {
                         "Content-Type": "application/json",
                     }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
+
+    public static async getMaterials(){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.recycleRequestManagement+"/getMaterials/",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    
+    }
+
+    @checkAccessToken()
+    public static async makeRecycleRequest(token: any, payload: any){
+
+        try{
+
+            let makeRecycleRequestPayload = MakeRecycleRequestPayload.createMakeRecycleRequestPayload(payload)
+
+            const {data, status} = await axios.post(
+                HOSTS.recycleRequestManagement+"/makeRecycleRequest/",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    },
+
+                    data: makeRecycleRequestPayload
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            if(error instanceof KeyError)
+                return {"message": "invalid parameters"}
+
+            return {"message": "unknown error"}
+
+        }
+
+    } 
+
+    @checkAccessToken()
+    public static async withdrawRecycleRequest(token: any, payload: any){
+
+        try{
+
+            let withdrawRecycleRequestPayload = WithdrawRecycleRequestPayload.createWithDrawRecycleRequestPayload(payload)
+
+            const {data, status} = await axios.delete(
+                HOSTS.recycleRequestManagement+"/makeRecycleRequest/",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    },
+
+                    data: withdrawRecycleRequestPayload
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            if(error instanceof KeyError)
+                return {"message": "invalid parameters"}
+
+            return {"message": "unknown error"}
+
+        }
+
+    } 
+
+    @checkAccessToken()
+    public static async getRecycleRequests(token: any){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.recycleRequestManagement+"/getRecycleRequests/",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    },
 
                 }
             )
