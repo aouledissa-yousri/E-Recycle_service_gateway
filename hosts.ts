@@ -3,7 +3,8 @@ export const HOSTS = {
     userManagement: "http://localhost:8000/user_management",
 
     //recycle request service
-    recycleRequestManagement: "http://localhost:3000/"
+    //recycleRequestManagement: "http://localhost:3000/"
+    recycleRequestManagement: "https://e-recycle-request-management-production.up.railway.app/"
 
     //currency service is still under development
 }
