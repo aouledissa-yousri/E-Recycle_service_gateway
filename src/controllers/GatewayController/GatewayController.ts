@@ -17,7 +17,7 @@ export abstract class GatewayController {
 
     public static async signUp(payload: any){
 
-        try{
+        //try{
 
             let signUpPayload = SignUpPayload.createSignUpPayload(payload)
 
@@ -35,14 +35,14 @@ export abstract class GatewayController {
 
             return data
 
-        }catch(error) {
+        //}catch(error) {
 
-            if(error instanceof KeyError)
+            /*if(error instanceof KeyError)
                 return {"message": "invalid parameters"}
             
-            return {"message": "unknown error"}
+            return {"message": "unknown error"}*/
 
-        }
+        //}
         
     }
 
