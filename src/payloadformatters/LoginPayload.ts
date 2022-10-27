@@ -18,21 +18,18 @@ export class LoginPayload{
     }
 
     public setUsername(username: string): void {
-        if(username == undefined)
-            this.username = ""
-        this.username = username
+        if(username == undefined) this.username = ""
+        else this.username = username
     }
 
     public setEmail(email: string): void {
-        if(email == undefined)
-            this.email = ""
-        this.email = email
+        if(email == undefined) this.email = ""
+        else this.email = email
     }
 
     public setPassword(password: string): void {
-        if(password == undefined)
-            throw new KeyError(password)
-        this.password = password
+        if(password == undefined) throw new KeyError(password)
+        else this.password = password
     }
 
     public static createLoginPayload(data: any): LoginPayload {

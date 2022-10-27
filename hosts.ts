@@ -1,7 +1,7 @@
 export const HOSTS = {
     //user management service 
-    //userManagement: "http://localhost:8000/manageUser/",
-    userManagement: "https://e-recycle-user-management-production.up.railway.app/manageUser/",
+    //userManagement: "http://localhost:7000/manageUser",
+    userManagement: "https://e-recycle-user-management-production.up.railway.app/manageUser",
 
     //recycle request service
     //recycleRequestManagement: "http://localhost:3000/"

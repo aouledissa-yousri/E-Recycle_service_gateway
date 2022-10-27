@@ -53,6 +53,8 @@ export abstract class GatewayController {
 
             const loginPayload = LoginPayload.createLoginPayload(payload)
 
+            console.log(loginPayload)
+
             const {data, status} = await axios.post(
                 HOSTS.userManagement+"/login/",
                 {
@@ -69,10 +71,11 @@ export abstract class GatewayController {
 
         }catch(error) {
 
-            if(error instanceof KeyError)
+            if(error instanceof KeyError){
                 return {"message": "invalid parameters"}
+            }
             
-            //return {"message": "unknown error"}
+            return {"message": "unknown error"}
 
         }
 
