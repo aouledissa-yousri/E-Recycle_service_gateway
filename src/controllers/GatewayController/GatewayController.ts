@@ -72,7 +72,7 @@ export abstract class GatewayController {
             if(error instanceof KeyError)
                 return {"message": "invalid parameters"}
             
-            return {"message": "unknown error"}
+            //return {"message": "unknown error"}
 
         }
 
