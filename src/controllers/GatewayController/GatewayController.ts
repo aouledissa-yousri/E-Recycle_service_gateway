@@ -40,7 +40,6 @@ export abstract class GatewayController {
             if(error instanceof KeyError)
                 return {"message": "invalid parameters"}
             
-            console.log(error)
             return {"message": "unknown error"}
 
         }
@@ -519,8 +518,6 @@ export abstract class GatewayController {
     public static async getRecycleRequests(token: any){
 
         try{
-
-            console.log(HOSTS.recycleRequestManagement+"/recycleRequest/getRecycleRequests")
 
             const {data, status} = await axios.get(
                 HOSTS.recycleRequestManagement+"/recycleRequest/getRecycleRequests",
