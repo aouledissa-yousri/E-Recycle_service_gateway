@@ -28,7 +28,7 @@ gatewayControllerRoutes.get("/googleLoginGateway", (request, response) => Gatewa
 
 gatewayControllerRoutes.get("/facebookLoginGateway", (request, response) => GatewayController.facebookLoginGateway().then(result => response.send(result)))
 
-gatewayControllerRoutes.get("/getMaterials", (request, response) => GatewayController.facebookLoginGateway().then(result => response.send(result)))
+gatewayControllerRoutes.get("/getMaterials", (request, response) => GatewayController.getMaterials().then(result => response.send(result)))
 
 gatewayControllerRoutes.post("/makeRecycleRequest", (request, response) => GatewayController.makeRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
 gatewayControllerRoutes.delete("/withdrawRecycleRequest", (request, response) => GatewayController.withdrawRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
