@@ -429,7 +429,7 @@ export abstract class GatewayController {
         try{
 
             const {data, status} = await axios.get(
-                HOSTS.recycleRequestManagement+"/getMaterials/",
+                HOSTS.recycleRequestManagement+"/materials/getAll",
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -457,7 +457,7 @@ export abstract class GatewayController {
             let makeRecycleRequestPayload = MakeRecycleRequestPayload.createMakeRecycleRequestPayload(payload)
 
             const {data, status} = await axios.post(
-                HOSTS.recycleRequestManagement+"/makeRecycleRequest/",
+                HOSTS.recycleRequestManagement+"/recycleRequest/makeRecycleRequest",
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -490,7 +490,7 @@ export abstract class GatewayController {
             let withdrawRecycleRequestPayload = WithdrawRecycleRequestPayload.createWithDrawRecycleRequestPayload(payload)
 
             const {data, status} = await axios.delete(
-                HOSTS.recycleRequestManagement+"/makeRecycleRequest/",
+                HOSTS.recycleRequestManagement+"/recycleRequest/withdrawRecycleRequest",
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -520,13 +520,15 @@ export abstract class GatewayController {
 
         try{
 
+            console.log(HOSTS.recycleRequestManagement+"/recycleRequest/getRecycleRequests")
+
             const {data, status} = await axios.get(
-                HOSTS.recycleRequestManagement+"/getRecycleRequests/",
+                HOSTS.recycleRequestManagement+"/recycleRequest/getRecycleRequests",
                 {
                     headers: {
                         "Content-Type": "application/json",
                         Token: token
-                    },
+                    }
 
                 }
             )
