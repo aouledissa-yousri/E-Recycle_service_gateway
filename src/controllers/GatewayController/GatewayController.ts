@@ -1,5 +1,5 @@
 import axios from "axios";
-import { HOSTS } from "../../../hosts"
+import { HOSTS } from "../../../HOSTS"
 import { KeyError } from "../../errors/KeyError";
 import { checkAccessToken } from "../../decorators";
 import { SignUpPayload } from '../../payloadformatters/SignUpPayload';
@@ -396,7 +396,30 @@ export abstract class GatewayController {
 
         }
 
-    } 
+    }
+
+    public static async googleCollectorLoginGateway(){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.userManagement+"/collector/googleLoginGateway/",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+    }
     
     public static async facebookLoginGateway(){
 
@@ -404,6 +427,30 @@ export abstract class GatewayController {
 
             const {data, status} = await axios.get(
                 HOSTS.userManagement+"/facebookLoginGateway/",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
+    public static async facebookCollectorLoginGateway(){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.userManagement+"/collector/facebookLoginGateway/",
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -538,7 +585,35 @@ export abstract class GatewayController {
 
         }
 
-    } 
+    }
+
+
+    @checkAccessToken()
+    public static async getAllRecycleRequests(token: any){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.recycleRequestManagement+"/recycleRequest/getAllRecycleRequests",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
     
 
 }

@@ -25,14 +25,18 @@ gatewayControllerRoutes.patch("/resetPassword", (request, response) => GatewayCo
 gatewayControllerRoutes.patch("/changePassword", (request, response) => GatewayController.changePassword(request.headers.token, request.body).then(result => response.send(result)))
 
 gatewayControllerRoutes.get("/googleLoginGateway", (request, response) => GatewayController.googleLoginGateway().then(result => response.send(result)))
+gatewayControllerRoutes.get("/collector/googleLoginGateway", (request, response) => GatewayController.googleLoginGateway().then(result => response.send(result)))
 
 gatewayControllerRoutes.get("/facebookLoginGateway", (request, response) => GatewayController.facebookLoginGateway().then(result => response.send(result)))
+gatewayControllerRoutes.get("/collector/facebookLoginGateway", (request, response) => GatewayController.facebookLoginGateway().then(result => response.send(result)))
 
 gatewayControllerRoutes.get("/getMaterials", (request, response) => GatewayController.getMaterials().then(result => response.send(result)))
 
 gatewayControllerRoutes.post("/makeRecycleRequest", (request, response) => GatewayController.makeRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
 gatewayControllerRoutes.delete("/withdrawRecycleRequest", (request, response) => GatewayController.withdrawRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
 gatewayControllerRoutes.get("/getRecycleRequests", (request, response) => GatewayController.getRecycleRequests(request.headers.token).then(result => response.send(result)))
+
+gatewayControllerRoutes.get("/getAllRecycleRequests", (request, response) => GatewayController.getAllRecycleRequests(request.headers.token).then(result => response.send(result)))
 
 
 export { gatewayControllerRoutes }
