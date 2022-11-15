@@ -12,6 +12,8 @@ import { ResetPasswordPayload } from '../../payloadformatters/ResetPasswordPaylo
 import { ChangePasswordPayload } from '../../payloadformatters/ChangePasswordPayload';
 import { MakeRecycleRequestPayload } from '../../payloadformatters/MakeRecycleRequestPayload';
 import { WithdrawRecycleRequestPayload } from '../../payloadformatters/WithdrawRecycleRequestPayload';
+import { ValidateRecycleRequestPayload } from "../../payloadformatters/ValidateRecycleRequestPayload";
+import { CompleteRecycleRequestPayload } from "../../payloadformatters/CompleteRecycleRequestPayload";
 
 export abstract class GatewayController {
 
@@ -540,7 +542,7 @@ export abstract class GatewayController {
                 {
                     headers: {
                         "Content-Type": "application/json",
-                        Token: token
+                        "Token": token
                     },
 
                     data: withdrawRecycleRequestPayload
@@ -607,6 +609,75 @@ export abstract class GatewayController {
             return data
 
         }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
+    @checkAccessToken()
+    public static async validateRecycleRequest(token: any, payload: any){
+
+        try{
+
+            console.log(token)
+
+            let validateRecycleRequestPayload = ValidateRecycleRequestPayload.createValidateRecycleRequestPayload(payload)
+
+            const {data, status} = await axios.patch(
+                HOSTS.recycleRequestManagement+"/recycleRequest/validateRecycleRequest",
+                validateRecycleRequestPayload,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    },
+
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            if(error instanceof KeyError)
+                return {"message": "invalid parameters"}
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
+    @checkAccessToken()
+    public static async completeRecycleRequest(token: any, payload: any){
+
+        try{
+
+            let completeRecycleRequestPayload = CompleteRecycleRequestPayload.createCompleteRecycleRequestPayload(payload)
+
+            const {data, status} = await axios.patch(
+                HOSTS.recycleRequestManagement+"/recycleRequest/completeRecycleRequest",
+                completeRecycleRequestPayload,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    },
+
+                    data: completeRecycleRequestPayload
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            if(error instanceof KeyError)
+                return {"message": "invalid parameters"}
 
             return {"message": "unknown error"}
 

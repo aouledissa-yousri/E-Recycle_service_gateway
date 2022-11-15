@@ -1,7 +1,7 @@
 import { KeyError } from '../errors/KeyError';
 
 
-export class WithdrawRecycleRequestPayload {
+export class CompleteRecycleRequestPayload {
 
     constructor(private id: number) {}
 
@@ -15,8 +15,8 @@ export class WithdrawRecycleRequestPayload {
         this.id = id
     }
 
-    public static createWithDrawRecycleRequestPayload(payload: any): WithdrawRecycleRequestPayload{
-        let withDrawRecycleRequestPayload = new WithdrawRecycleRequestPayload(0)
+    public static createCompleteRecycleRequestPayload(payload: any): CompleteRecycleRequestPayload{
+        let withDrawRecycleRequestPayload = new CompleteRecycleRequestPayload(0)
         withDrawRecycleRequestPayload.setId(payload["id"])
         return withDrawRecycleRequestPayload
     }

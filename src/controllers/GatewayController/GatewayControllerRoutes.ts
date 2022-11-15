@@ -37,6 +37,8 @@ gatewayControllerRoutes.delete("/withdrawRecycleRequest", (request, response) =>
 gatewayControllerRoutes.get("/getRecycleRequests", (request, response) => GatewayController.getRecycleRequests(request.headers.token).then(result => response.send(result)))
 
 gatewayControllerRoutes.get("/getAllRecycleRequests", (request, response) => GatewayController.getAllRecycleRequests(request.headers.token).then(result => response.send(result)))
+gatewayControllerRoutes.patch("/validateRecycleRequest", (request, response) => GatewayController.validateRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
+gatewayControllerRoutes.patch("/completeRecycleRequest", (request, response) => GatewayController.completeRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
 
 
 export { gatewayControllerRoutes }
