@@ -40,5 +40,7 @@ gatewayControllerRoutes.get("/getAllRecycleRequests", (request, response) => Gat
 gatewayControllerRoutes.patch("/validateRecycleRequest", (request, response) => GatewayController.validateRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
 gatewayControllerRoutes.patch("/completeRecycleRequest", (request, response) => GatewayController.completeRecycleRequest(request.headers.token, request.body).then(result => response.send(result)))
 
+gatewayControllerRoutes.patch("/gainRecycleCoins", (request, response) => GatewayController.gainRecycleCoins(request.headers.token, request.body).then(result => response.send(result)))
+
 
 export { gatewayControllerRoutes }

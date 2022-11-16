@@ -14,6 +14,7 @@ import { MakeRecycleRequestPayload } from '../../payloadformatters/MakeRecycleRe
 import { WithdrawRecycleRequestPayload } from '../../payloadformatters/WithdrawRecycleRequestPayload';
 import { ValidateRecycleRequestPayload } from "../../payloadformatters/ValidateRecycleRequestPayload";
 import { CompleteRecycleRequestPayload } from "../../payloadformatters/CompleteRecycleRequestPayload";
+import { GainCoinsPayload } from '../../payloadformatters/GainCoinsPayload';
 
 export abstract class GatewayController {
 
@@ -506,13 +507,13 @@ export abstract class GatewayController {
 
             const {data, status} = await axios.post(
                 HOSTS.recycleRequestManagement+"/recycleRequest/makeRecycleRequest",
+                makeRecycleRequestPayload,
                 {
                     headers: {
                         "Content-Type": "application/json",
                         Token: token
                     },
 
-                    data: makeRecycleRequestPayload
 
                 }
             )
@@ -667,7 +668,6 @@ export abstract class GatewayController {
                         Token: token
                     },
 
-                    data: completeRecycleRequestPayload
 
                 }
             )
@@ -682,6 +682,42 @@ export abstract class GatewayController {
             return {"message": "unknown error"}
 
         }
+
+    }
+
+    @checkAccessToken()
+    public static async gainRecycleCoins(token: any, payload: any){
+
+       // try{
+
+            let gainCoinsPayload = GainCoinsPayload.createGainCoinsPayload(payload)
+
+
+            const {data, status} = await axios.patch(
+                HOSTS.currencyManagement+"/gainRecycleCoins/",
+                {
+                    "id": gainCoinsPayload.getId(),
+                    "coins": 500
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    },
+
+                }
+            )
+
+            return data
+
+        /*}catch(error) {
+
+            if(error instanceof KeyError)
+                return {"message": "invalid parameters"}
+
+            return {"message": "unknown error"}
+
+        }*/
 
     }
 
