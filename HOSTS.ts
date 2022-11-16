@@ -9,5 +9,5 @@ export const HOSTS = {
 
     //currency service is still under development
 
-    currencyManagement: "url"
+    currencyManagement: "url2"
 }
