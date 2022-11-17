@@ -688,16 +688,16 @@ export abstract class GatewayController {
     @checkAccessToken()
     public static async gainRecycleCoins(token: any, payload: any){
 
-       // try{
+        //try{
 
             let gainCoinsPayload = GainCoinsPayload.createGainCoinsPayload(payload)
-
+            console.log(HOSTS.currencyManagement+"/gainRecycleCoins")
 
             const {data, status} = await axios.patch(
-                HOSTS.currencyManagement+"/gainRecycleCoins/",
+                HOSTS.currencyManagement+"/gainRecycleCoins",
                 {
                     "id": gainCoinsPayload.getId(),
-                    "coins": 500
+                    "recycleRequest": gainCoinsPayload.getRecycleRequest()
                 },
                 {
                     headers: {
