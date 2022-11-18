@@ -721,6 +721,32 @@ export abstract class GatewayController {
 
     }
 
+    @checkAccessToken()
+    public static async getRecycleCoins(token: any){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.currencyManagement+"/getRecycleCoins",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
     
 
 }
