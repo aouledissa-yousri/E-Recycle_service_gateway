@@ -8,6 +8,6 @@ export const HOSTS = {
     recycleRequestManagement: "https://e-recycle-request-management-production.up.railway.app",
 
     //currency service
-    //currencyManagement: "http://localhost:5000/api/Coins"
+    currencyManagement1: "http://localhost:5000/api/Coins",
     currencyManagement: "https://e-recyclecurrencyservice-production.up.railway.app/api/Coins"
 }
