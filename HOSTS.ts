@@ -9,5 +9,5 @@ export const HOSTS = {
 
     //currency service is still under development
 
-    currencyManagement: "http://localhost:5022/api/Coins"
+    currencyManagement: "http://localhost:5000/api/Coins"
 }

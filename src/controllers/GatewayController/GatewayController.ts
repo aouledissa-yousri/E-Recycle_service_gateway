@@ -688,7 +688,7 @@ export abstract class GatewayController {
     @checkAccessToken()
     public static async gainRecycleCoins(token: any, payload: any){
 
-        //try{
+        try{
 
             let gainCoinsPayload = GainCoinsPayload.createGainCoinsPayload(payload)
             console.log(HOSTS.currencyManagement+"/gainRecycleCoins")
@@ -710,14 +710,14 @@ export abstract class GatewayController {
 
             return data
 
-        /*}catch(error) {
+        }catch(error) {
 
             if(error instanceof KeyError)
                 return {"message": "invalid parameters"}
 
             return {"message": "unknown error"}
 
-        }*/
+        }
 
     }
 
