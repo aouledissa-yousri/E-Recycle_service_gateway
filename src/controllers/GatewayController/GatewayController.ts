@@ -802,9 +802,83 @@ export abstract class GatewayController {
     }
 
     @checkAccessToken()
-    public static async addMakeRecycleRequestNotification(token: any, payload: any) {}
-    public static async addValidateRecycleRequestNotification(token: any, payload: any) {}
-    public static async addCompleteRecycleRequestNotification(token: any, payload: any) {}
+    public static async addMakeRecycleRequestNotification(token: any, payload: any) {
+
+        try{
+
+            const {data, status} = await axios.post(
+                HOSTS.notificationManagement+"/addMakeRecycleRequestNotification",
+                payload,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
+
+    public static async addValidateRecycleRequestNotification(token: any, payload: any) {
+
+        try{
+
+            const {data, status} = await axios.post(
+                HOSTS.notificationManagement+"/addValidateRecycleRequestNotification",
+                payload,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+    }
+
+
+    public static async addCompleteRecycleRequestNotification(token: any, payload: any) {
+
+        try{
+
+            const {data, status} = await axios.post(
+                HOSTS.notificationManagement+"/addCompleteRecycleRequestNotification",
+                payload,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+    }
 
     
 

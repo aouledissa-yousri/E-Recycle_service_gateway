@@ -12,5 +12,6 @@ export const HOSTS = {
     currencyManagement: "https://e-recyclecurrencyservice-production.up.railway.app/api/Coins",
 
     //notification service 
-    notificationManagement: "http://localhost:8080/"
+    //notificationManagement: "http://localhost:8080/",
+    notificationManagement: "https://e-recyclenotificationservice-production.up.railway.app/",
 }

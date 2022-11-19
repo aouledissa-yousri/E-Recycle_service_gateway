@@ -45,10 +45,10 @@ gatewayControllerRoutes.get("/getRecycleCoins", (request, response) => GatewayCo
 
 
 gatewayControllerRoutes.get("/getNotification", (request, response) => GatewayController.getNotification(request.headers.token).then(result => response.send(result)))
-gatewayControllerRoutes.get("/checkNotifications", (request, response) => GatewayController.checkNotifications(request.headers.token).then(result => response.send(result)))
-gatewayControllerRoutes.get("/addMakeRecycleRequestNotification", (request, response) => GatewayController.addMakeRecycleRequestNotification(request.headers.token, request.body).then(result => response.send(result)))
-gatewayControllerRoutes.get("/addValidateRecycleRequestNotification", (request, response) => GatewayController.addValidateRecycleRequestNotification(request.headers.token, request.body).then(result => response.send(result)))
-gatewayControllerRoutes.get("/addCompleteRecycleRequestNotification", (request, response) => GatewayController.addCompleteRecycleRequestNotification(request.headers.token, request.body).then(result => response.send(result)))
+gatewayControllerRoutes.patch("/checkNotifications", (request, response) => GatewayController.checkNotifications(request.headers.token).then(result => response.send(result)))
+gatewayControllerRoutes.post("/addMakeRecycleRequestNotification", (request, response) => GatewayController.addMakeRecycleRequestNotification(request.headers.token, request.body).then(result => response.send(result)))
+gatewayControllerRoutes.post("/addValidateRecycleRequestNotification", (request, response) => GatewayController.addValidateRecycleRequestNotification(request.headers.token, request.body).then(result => response.send(result)))
+gatewayControllerRoutes.post("/addCompleteRecycleRequestNotification", (request, response) => GatewayController.addCompleteRecycleRequestNotification(request.headers.token, request.body).then(result => response.send(result)))
 
 
 export { gatewayControllerRoutes }
