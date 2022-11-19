@@ -747,6 +747,65 @@ export abstract class GatewayController {
 
     }
 
+
+    @checkAccessToken()
+    public static async getNotification(token: any){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.notificationManagement+"/getNotifications",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
+
+    @checkAccessToken()
+    public static async checkNotifications(token: any){
+
+        try{
+
+            const {data, status} = await axios.get(
+                HOSTS.notificationManagement+"/checkNotifications",
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Token: token
+                    }
+
+                }
+            )
+
+            return data
+
+        }catch(error) {
+
+            return {"message": "unknown error"}
+
+        }
+
+    }
+
+    @checkAccessToken()
+    public static async addMakeRecycleRequestNotification(token: any, payload: any) {}
+    public static async addValidateRecycleRequestNotification(token: any, payload: any) {}
+    public static async addCompleteRecycleRequestNotification(token: any, payload: any) {}
+
     
 
 }

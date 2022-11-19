@@ -9,5 +9,8 @@ export const HOSTS = {
 
     //currency service
     //currencyManagement: "http://localhost:5000/api/Coins"
-    currencyManagement: "https://e-recyclecurrencyservice-production.up.railway.app/api/Coins"
+    currencyManagement: "https://e-recyclecurrencyservice-production.up.railway.app/api/Coins",
+
+    //notification service 
+    notificationManagement: "http://localhost:8080/"
 }
