@@ -617,6 +617,24 @@ export abstract class GatewayController {
 
     }
 
+    public static async getValidatedRecycleRequests(token: string){
+
+        const {data, status} = await axios.get(
+            HOSTS[0]+"/getValidatedRecycleRequests/",
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    Token: token
+                }
+            }
+        )
+
+
+        return data
+
+    }
+
     @checkAccessToken()
     public static async validateRecycleRequest(token: any, payload: any){
 
