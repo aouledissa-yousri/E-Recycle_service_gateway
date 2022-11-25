@@ -20,8 +20,6 @@ export abstract class GatewayController {
 
     public static async signUp(payload: any){
 
-        console.log(HOSTS.userManagement)
-
         try{
 
             let signUpPayload = SignUpPayload.createSignUpPayload(payload)
@@ -38,13 +36,9 @@ export abstract class GatewayController {
                 
             )
 
-            console.log(data)
-
             return data
 
         }catch(error) {
-
-            console.log(error)
 
             if(error instanceof KeyError)
                 return {"message": "invalid parameters"}

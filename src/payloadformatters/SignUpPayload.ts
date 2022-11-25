@@ -4,7 +4,7 @@ import { KeyError } from '../errors/KeyError';
 
 export class SignUpPayload {
 
-    constructor(private userProfile: UserProfilePayload, private name: string, private lastname: string){}
+    constructor(private userProfile: UserProfilePayload, private name: string, private lastname: string, private recycleCoins: number){}
 
 
     public getUserProfile(): UserProfilePayload {
@@ -17,6 +17,10 @@ export class SignUpPayload {
 
     public getLastname(): string {
         return this.lastname
+    }
+
+    public getRecycleCoins(): number {
+        return this.recycleCoins
     }
 
     public setUserProfile(data: any) {
@@ -37,17 +41,25 @@ export class SignUpPayload {
         this.lastname = lastname
     }
 
+    public setRecycleCoins(recycleCoins: number): void {
+        if(recycleCoins == undefined)
+            throw new KeyError(recycleCoins)
+        this.recycleCoins = recycleCoins
+    }
+
 
     public static createSignUpPayload(data: any): SignUpPayload {
         let signUpPayload = new SignUpPayload(
             new UserProfilePayload("", "", ""),
             "",
-            ""
+            "",
+            0
         )
 
         signUpPayload.setUserProfile(data["user_profile"])
         signUpPayload.setName(data["name"])
         signUpPayload.setLastName(data["lastname"])
+        signUpPayload.setRecycleCoins(0)
 
         return signUpPayload
     }
@@ -56,7 +68,8 @@ export class SignUpPayload {
         return {
             "user_profile": this.userProfile.getData(),
             "name": this.name,
-            "lastname": this.lastname
+            "lastname": this.lastname,
+            "recycleCoins": this.recycleCoins
         }
     }
 
