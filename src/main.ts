@@ -7,7 +7,7 @@ import { routes } from "./routes"
 const app = express()
 
 //hosts that are allowed to connect to the application
-const corsOptions = []
+const corsOptions = ["*"]
 
 app.use(express.json())
 app.use(cors(corsOptions))
