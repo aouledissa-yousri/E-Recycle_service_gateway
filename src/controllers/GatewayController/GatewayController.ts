@@ -20,8 +20,6 @@ export abstract class GatewayController {
 
     public static async signUp(payload: any){
 
-        console.log(HOSTS.userManagement)
-
         try{
 
             let signUpPayload = SignUpPayload.createSignUpPayload(payload)
