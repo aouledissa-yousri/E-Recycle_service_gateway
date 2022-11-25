@@ -44,6 +44,8 @@ export abstract class GatewayController {
 
         }catch(error) {
 
+            console.log(error)
+
             if(error instanceof KeyError)
                 return {"message": "invalid parameters"}
             
