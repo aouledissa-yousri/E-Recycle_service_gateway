@@ -38,6 +38,8 @@ export abstract class GatewayController {
                 
             )
 
+            console.log(data)
+
             return data
 
         }catch(error) {
