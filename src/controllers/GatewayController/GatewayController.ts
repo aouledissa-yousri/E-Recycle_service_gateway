@@ -830,7 +830,7 @@ export abstract class GatewayController {
         try{
 
             const {data, status} = await axios.get(
-                HOSTS.notificationManagement+"/checkNotifications",
+                HOSTS.notificationManagement+"/checkNotifications/",
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -853,10 +853,11 @@ export abstract class GatewayController {
     @checkAccessToken()
     public static async addMakeRecycleRequestNotification(token: any, payload: any) {
 
+
         try{
 
             const {data, status} = await axios.post(
-                HOSTS.notificationManagement+"/addMakeRecycleRequestNotification",
+                HOSTS.notificationManagement+"/addMakeRecycleRequestNotification/",
                 payload,
                 {
                     headers: {
@@ -883,7 +884,7 @@ export abstract class GatewayController {
         try{
 
             const {data, status} = await axios.post(
-                HOSTS.notificationManagement+"/addValidateRecycleRequestNotification",
+                HOSTS.notificationManagement+"/addValidateRecycleRequestNotification/",
                 payload,
                 {
                     headers: {
@@ -909,7 +910,7 @@ export abstract class GatewayController {
         try{
 
             const {data, status} = await axios.post(
-                HOSTS.notificationManagement+"/addCompleteRecycleRequestNotification",
+                HOSTS.notificationManagement+"/addCompleteRecycleRequestNotification/",
                 payload,
                 {
                     headers: {

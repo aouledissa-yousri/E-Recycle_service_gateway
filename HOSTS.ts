@@ -12,6 +12,6 @@ export const HOSTS = {
     currencyManagement: "https://currencyservice-production.up.railway.app/api/Coins",
 
     //notification service 
-    //notificationManagement: "http://localhost:8080/",
-    notificationManagement: "https://notificationservice-production.up.railway.app/",
+    //notificationManagement: "http://localhost:8080",
+    notificationManagement: "https://notificationservice-production.up.railway.app",
 }
