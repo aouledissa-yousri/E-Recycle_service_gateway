@@ -6,6 +6,7 @@ let gatewayControllerRoutes = express.Router()
 //put your routes here
 
 gatewayControllerRoutes.post("/signUp", (request, response) => GatewayController.signUp(request.body).then(result => response.send(result)))
+gatewayControllerRoutes.post("/collector/signUp", (request, response) => GatewayController.collectorSignUp(request.body).then(result => response.send(result)))
 
 gatewayControllerRoutes.post("/login", (request, response) => GatewayController.login(request.body).then(result => response.send(result)))
 

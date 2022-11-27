@@ -40,6 +40,39 @@ export abstract class GatewayController {
 
         }catch(error) {
 
+
+            if(error instanceof KeyError)
+                return {"message": "invalid parameters"}
+            
+            return {"message": "unknown error"}
+
+        }
+        
+    }
+
+    public static async collectorSignUp(payload: any){
+
+        try{
+
+            let signUpPayload = SignUpPayload.createSignUpPayload(payload)
+
+            const {data, status} = await axios.post(
+                HOSTS.userManagement+"/collector/signUp/", 
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+
+                    data: signUpPayload.getData()
+                }
+                
+            )
+
+            return data
+
+        }catch(error) {
+
+
             if(error instanceof KeyError)
                 return {"message": "invalid parameters"}
             
@@ -640,7 +673,6 @@ export abstract class GatewayController {
 
         try{
 
-            console.log(token)
 
             let validateRecycleRequestPayload = ValidateRecycleRequestPayload.createValidateRecycleRequestPayload(payload)
 
@@ -709,7 +741,6 @@ export abstract class GatewayController {
         try{
 
             let gainCoinsPayload = GainCoinsPayload.createGainCoinsPayload(payload)
-            console.log(HOSTS.currencyManagement+"/gainRecycleCoins")
 
             const {data, status} = await axios.patch(
                 HOSTS.currencyManagement+"/gainRecycleCoins",
