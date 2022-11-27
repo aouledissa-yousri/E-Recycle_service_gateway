@@ -854,6 +854,7 @@ export abstract class GatewayController {
     public static async addMakeRecycleRequestNotification(token: any, payload: any) {
 
 
+
         try{
 
             const {data, status} = await axios.post(
